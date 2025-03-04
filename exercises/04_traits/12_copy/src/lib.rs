@@ -17,7 +17,7 @@ impl Add<WrappingU32> for WrappingU32 {
     type Output = WrappingU32;
 
     fn add(self, rhs: WrappingU32) -> WrappingU32 {
-        WrappingU32::new(self.value + rhs.value)
+        WrappingU32::new(self.value.wrapping_add(rhs.value))
     }
 }
 
