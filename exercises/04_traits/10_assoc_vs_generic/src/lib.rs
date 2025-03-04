@@ -13,6 +13,52 @@
 // You don't have to though: it's perfectly okay to write three separate
 // implementations manually. Venture further only if you're curious.
 
+// Solution 1: Manually implementing trait and use cases
+trait Power<T = Self> {
+    type Output;
+
+    fn power(self, p: T) -> Self::Output;
+}
+
+impl Power<u16> for u32 {
+    type Output = u32;
+
+    fn power(self, p: u16) -> u32 {
+        let mut result = 1;
+        for i in 1..=p {
+            result *= self;
+        }
+
+        result
+    }
+}
+
+impl Power<u32> for u32 {
+    type Output = u32;
+
+    fn power(self, p: u32) -> u32 {
+        let mut result = 1;
+        for i in 1..=p {
+            result *= self;
+        }
+
+        result
+    }
+}
+
+impl Power<&u32> for u32 {
+    type Output = u32;
+
+    fn power(self, p: &u32) -> u32 {
+        let mut result = 1;
+        for i in 1..=*p {
+            result *= self;
+        }
+
+        result
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::Power;
